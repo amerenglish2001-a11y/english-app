@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>فێربوونی ئینگلیزی</title>
+<style>
+:root{--bg:#f4faf9;--card:#fff;--text:#14302c;--muted:#5b7773;--pri:#0f766e;--onpri:#fff;--ok:#bbf7d0;--bad:#fecaca;--line:#d5e6e3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1f1d;--card:#15302d;--text:#e6f4f2;--muted:#9bb9b5;--pri:#2dd4bf;--onpri:#042f2a;--ok:#14532d;--bad:#7f1d1d;--line:#24443f}}
+:root[data-theme="dark"]{--bg:#0d1f1d;--card:#15302d;--text:#e6f4f2;--muted:#9bb9b5;--pri:#2dd4bf;--onpri:#042f2a;--ok:#14532d;--bad:#7f1d1d;--line:#24443f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,"Noto Naskh Arabic",Tahoma,sans-serif;font-size:18px}
+main{max-width:560px;margin:0 auto;padding:16px}
+h1{font-size:24px;margin:8px 0 12px}h2{font-size:18px;color:var(--muted);margin:20px 0 8px}
+.card{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:8px 0;cursor:pointer}
+.card .ic{font-size:28px}.card .t{flex:1}.card small{display:block;color:var(--muted);font-size:14px}
+.en{direction:ltr;unicode-bidi:isolate;font-weight:600}
+button{font:inherit;border:0;border-radius:12px;padding:12px 16px;cursor:pointer;background:var(--pri);color:var(--onpri)}
+button.ghost{background:transparent;color:var(--pri);padding:6px 0}
+.opt{display:block;width:100%;margin:8px 0;background:var(--card);color:var(--text);border:1px solid var(--line)}
+.opt.ok{background:var(--ok)}.opt.bad{background:var(--bad)}
+.big{text-align:center;font-size:64px;margin:12px 0 0}.q{text-align:center;font-size:28px}
+.row{display:flex;justify-content:center;margin:8px 0 16px}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const L=[
+["greet","سڵاوکردن","سەرەتایی",[["Hello","سڵاو","👋"],["Goodbye","خوات لەگەڵ","🙋"],["Thank you","سوپاس","🙏"],["Please","تکایە","🤲"],["Sorry","ببورە","😔"],["Yes","بەڵێ","✅"],["No","نەخێر","❌"]]],
+["num","ژمارەکان","سەرەتایی",[["One","یەک","1️⃣"],["Two","دوو","2️⃣"],["Three","سێ","3️⃣"],["Four","چوار","4️⃣"],["Five","پێنج","5️⃣"],["Six","شەش","6️⃣"],["Seven","حەوت","7️⃣"],["Eight","هەشت","8️⃣"],["Nine","نۆ","9️⃣"],["Ten","دە","🔟"]]],
+["color","ڕەنگەکان","سەرەتایی",[["Red","سوور","🔴"],["Blue","شین","🔵"],["Green","سەوز","🟢"],["Yellow","زەرد","🟡"],["Black","ڕەش","⚫"],["White","سپی","⚪"]]],
+["family","خێزان","سەرەتایی",[["Mother","دایک","👩"],["Father","باوک","👨"],["Brother","برا","👦"],["Sister","خوشک","👧"],["Son","کوڕ","🧒"],["Daughter","کچ","👶"]]],
+["phrases","ڕستە بەکارهاتووەکان","ناوەند",[["How are you?","چۆنی؟","🙂"],["What is your name?","ناوت چییە؟","📛"],["I am hungry","برسیمە","🍽️"],["I do not understand","تێناگەم","🤔"],["Where is the toilet?","تەواڵێت لە کوێیە؟","🚻"],["How much is this?","ئەمە بە چەندە؟","💰"]]],
+["food","خواردن و خواردنەوە","ناوەند",[["Water","ئاو","💧"],["Bread","نان","🍞"],["Rice","برنج","🍚"],["Meat","گۆشت","🥩"],["Tea","چا","🍵"],["Apple","سێو","🍎"]]],
+["days","ڕۆژەکانی هەفتە","سەرەتایی",[["Saturday","شەممە","📅"],["Sunday","یەکشەممە","📅"],["Monday","دووشەممە","📅"],["Tuesday","سێشەممە","📅"],["Wednesday","چوارشەممە","📅"],["Thursday","پێنجشەممە","📅"],["Friday","هەینی","🕌"]]],
+["animals","ئاژەڵ","سەرەتایی",[["Cat","پشیلە","🐱"],["Dog","سەگ","🐶"],["Bird","باڵندە","🐦"],["Horse","ئەسپ","🐴"],["Cow","مانگا","🐄"],["Sheep","مەڕ","🐑"]]],
+["body","لەش","سەرەتایی",[["Head","سەر","🗣️"],["Eye","چاو","👁️"],["Ear","گوێ","👂"],["Mouth","دەم","👄"],["Hand","دەست","✋"],["Leg","قاچ","🦵"]]],
+["adj","ئاوەڵناو","ناوەند",[["Big","گەورە","🐘"],["Small","بچووک","🐜"],["Hot","گەرم","🔥"],["Cold","سارد","❄️"],["New","نوێ","🆕"],["Old","کۆن","🏚️"],["Good","باش","👍"],["Bad","خراپ","👎"]]],
+["verbs","کردارەکان","ناوەند",[["Go","چوون","🚶"],["Eat","خواردن","🍴"],["Drink","خواردنەوە","🥤"],["Sleep","نوستن","😴"],["Read","خوێندنەوە","📖"],["Write","نووسین","✍️"],["Speak","قسەکردن","💬"],["Work","کارکردن","💼"]]],
+["places","شوێنەکان","ناوەند",[["House","ماڵ","🏠"],["School","قوتابخانە","🏫"],["Hospital","نەخۆشخانە","🏥"],["Market","بازاڕ","🛒"],["Street","شەقام","🛣️"],["Airport","فڕۆکەخانە","✈️"]]],
+["time","کات","ناوەند",[["Today","ئەمڕۆ","📆"],["Tomorrow","سبەینێ","➡️"],["Yesterday","دوێنێ","⬅️"],["Morning","بەیانی","🌅"],["Night","شەو","🌙"],["Now","ئێستا","⏰"]]],
+["travel","گەشت","ناوەند",[["Ticket","بلیت","🎫"],["Passport","پاسپۆرت","🛂"],["Hotel","هۆتێل","🏨"],["Luggage","جانتا","🧳"],["Map","نەخشە","🗺️"],["Taxi","تاکسی","🚕"]]],
+["grammar","ڕستەی ڕێزمانی","ناوەند",[["I am a student","من قوتابیم","🎓"],["She is reading a book","ئەو کتێبێک دەخوێنێتەوە","📘"],["We went to the market yesterday","دوێنێ چووینە بازاڕ","🛍️"],["They will travel tomorrow","سبەینێ گەشت دەکەن","🧳"],["I have finished my work","کارەکەم تەواو کردووە","✅"],["If it rains, we will stay home","ئەگەر باران ببارێت لە ماڵ دەمێنینەوە","🌧️"]]],
+["advphr","ڕستەی پێشکەوتوو","پێشکەوتوو",[["I would like to book a room","دەمەوێت ژوورێک بگرم","🛏️"],["Could you help me, please?","تکایە دەتوانیت یارمەتیم بدەیت؟","🆘"],["I have been waiting for an hour","یەک کاتژمێرە چاوەڕێم","⌛"],["It depends on the situation","بەندە بە دۆخەکە","⚖️"],["I completely agree with you","بە تەواوی لەگەڵتدا ڕام","🤝"],["Let us discuss it later","با دواتر باسی بکەین","🗓️"]]],
+["advvoc","وشەی پێشکەوتوو","پێشکەوتوو",[["Achievement","دەستکەوت","🏆"],["Experience","ئەزموون","🎒"],["Opportunity","دەرفەت","🚪"],["Responsibility","بەرپرسیارێتی","📌"],["Environment","ژینگە","🌳"],["Decision","بڕیار","🧭"],["Challenge","ئاڵنگاری","🧗"]]],
+["idioms","پەندی ئینگلیزی","پێشکەوتوو",[["Break the ice","سەرەتای قسەکردن ئاسان بکە","🧊"],["A piece of cake","کارێکی زۆر ئاسان","🍰"],["Under the weather","کەمێک نەخۆش","🤒"],["Once in a blue moon","زۆر دەگمەن","🌕"],["Hit the books","بە جدی بخوێنە","📚"],["Cost an arm and a leg","زۆر گران","💸"]]]
+];
+const app=document.getElementById("app");
+const h=(t,a={},...c)=>{const e=document.createElement(t);for(const k in a){k.startsWith("on")?e[k]=a[k]:e.setAttribute(k,a[k])}c.flat().forEach(x=>e.append(x));return e};
+const get=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}};
+const set=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.8;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function show(...n){app.replaceChildren(...n);window.scrollTo(0,0)}
+
+function home(){
+  const best=get("best")||{};
+  const out=[h("h1",{},"فێربوونی ئینگلیزی")];
+  for(const lv of ["سەرەتایی","ناوەند","پێشکەوتوو"]){
+    out.push(h("h2",{},lv));
+    L.filter(l=>l[2]===lv).forEach(l=>{
+      const b=best[l[0]];
+      out.push(h("div",{class:"card",onclick:()=>lesson(l)},
+        h("span",{class:"ic"},l[3][0][2]),
+        h("span",{class:"t"},l[1],h("small",{},b==null?"هێشتا نەکراوە":"باشترین ئەنجام: "+b+"/"+l[3].length))));
+    });
+  }
+  show(...out);
+}
+
+function lesson(l){
+  show(
+    h("button",{class:"ghost",onclick:home},"← گەڕانەوە"),
+    h("h1",{},l[1]),
+    ...l[3].map(w=>h("div",{class:"card",onclick:()=>speak(w[0])},
+      h("span",{class:"ic"},w[2]),
+      h("span",{class:"t"},h("span",{class:"en"},w[0]),h("small",{},w[1])),
+      h("span",{},"🔊"))),
+    h("div",{class:"row"},h("button",{onclick:()=>quiz(l)},"تاقیکردنەوە"))
+  );
+}
+
+function quiz(l){
+  const qs=shuffle(l[3]);let i=0,score=0,locked=false;
+  function ask(){
+    if(i>=qs.length){
+      const b=get("best")||{};
+      if(b[l[0]]==null||score>b[l[0]]){b[l[0]]=score;set("best",b)}
+      show(h("h1",{class:"q"},"ئەنجام"),h("div",{class:"big"},score+" / "+qs.length),
+        h("div",{class:"row"},h("button",{onclick:home},"گەڕانەوە")));
+      return;
+    }
+    const w=qs[i];locked=false;
+    const opts=shuffle([...shuffle(l[3].filter(x=>x!==w)).slice(0,3).map(x=>x[1]),w[1]]);
+    const btns=opts.map(o=>{
+      const b=h("button",{class:"opt",onclick:()=>{
+        if(locked)return;locked=true;
+        if(o===w[1]){score++;b.classList.add("ok")}else{b.classList.add("bad");btns.find(x=>x.textContent===w[1]).classList.add("ok")}
+        setTimeout(()=>{i++;ask()},900);
+      }},o);return b;
+    });
+    show(h("div",{},"پرسیار "+(i+1)+" / "+qs.length),
+      h("div",{class:"big"},w[2]),
+      h("div",{class:"q en"},w[0]),
+      h("div",{class:"row"},h("button",{class:"ghost",onclick:()=>speak(w[0])},"🔊 دەنگ")),
+      ...btns);
+    speak(w[0]);
+  }
+  ask();
+}
+home();
+</script>
+</body>
+</html>
